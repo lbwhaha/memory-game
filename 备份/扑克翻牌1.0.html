@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #startwrapper{
+            width: 450px;
+            height: 634px;
+            border: 2px solid #60dbff;
+            border-radius: 10px;
+            background-image: url("./img/startBG2.jpg");
+            background-size: cover;
+            position: absolute;
+            left: 20%;
+        }
+        #title{
+            width: 200px;
+            height: 108px;
+            left: 125px;
+            top: 150px;
+            position: absolute;
+        }
+        #startwrapper div{
+            width: 450px;
+            height: 634px;
+            display: flex;
+            justify-content: center;
+            position: absolute;
+        }
+        #startgame{
+            top: 300px;
+            width: 200px;
+            height: 167px;
+            position: absolute;
+        }
+        #gamewrapper{
+            width: 450px;
+            height: 634px;
+            border: 2px solid #60dbff;
+            background-image: url("./img/bodybg.jpg");
+            background-size: cover;
+            border-radius: 10px;
+            position: relative;
+            left: 20%;
+            transform-style: preserve-3d;
+            display: none;
+            float: left;
+        }
+        #gamewrapper div{
+            width: 100px;
+            height: 146px;
+            position: absolute;
+        }
+        #gamewrapper div:hover{
+            cursor: pointer;
+        }
+        .img1{
+            width: 100%;
+            height: 100%;
+            position: absolute;
+        }
+        .img2{
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            z-index: -1;
+        }
+        @keyframes outner11 {
+            0%{transform: rotateY(0deg)}
+            50%{transform: rotateY(90deg)}
+            100%{transform: rotateY(90deg)}
+        }
+        @keyframes inner21 {
+            0%{transform: rotateY(180deg)}
+            50%{transform: rotateY(270deg)}
+            100%{transform: rotateY(360deg)}
+        }
+        @keyframes outner12 {
+            0%{transform: rotateY(90deg)}
+            50%{transform: rotateY(90deg)}
+            100%{transform: rotateY(0deg)}
+        }
+        @keyframes inner22 {
+            0%{transform: rotateY(360deg)}
+            50%{transform: rotateY(270deg)}
+            100%{transform: rotateY(180deg)}
+        }
+        @keyframes outner13 {
+            0%{transform: rotateY(90deg);opacity: 1}
+            100%{transform: rotateY(90deg);opacity: 0}
+        }
+        @keyframes inner23 {
+            0%{transform: rotateY(360deg);opacity: 1}
+            100%{transform: rotateY(360deg);opacity: 0}
+        }
+        #btn{
+            position: absolute;
+            left: 22%;
+            top: 650px;
+            display: none;
+        }
+        .btn{
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            border: 1px solid black;
+            background-image: url("./img/btn.png");
+            background-size: cover;
+            color: #ff558c;
+            line-height: 100px;
+            text-align: center;
+            border-radius: 50px;
+            box-shadow: inset 0 0 25px 0px rgba(0,0,0,0.2),
+            0 1px 0 0 #999,
+            0 2px 0 0 #888,
+            0 3px 0 0 #777,
+            0 4px 0 0 #666,
+            0 5px 0 0 #555,
+            0 6px 0 0 #444,
+            0 7px 0 0 #333,
+            0 8px 7px 0 #001135;
+        }
+        .btn:hover{
+            cursor: pointer;
+        }
+        .btn:active{
+            transform: translateY(5px);
+            box-shadow:inset 0 0 25px 0px rgba(0,0,0,0.2),
+            0 1px 0 0 #999,
+            0 2px 0 0 #888,
+            0 3px 0 0 #777;
+        }
+        #score{
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            line-height: 100px;
+            text-align: center;
+        }
+        #overwrapper{
+            width: 450px;
+            height: 634px;
+            border: 2px solid #60dbff;
+            border-radius: 10px;
+            position: absolute;
+            left: 20%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            display: none;
+        }
+        #bgimg{
+            border-radius: 10px;
+            width: 450px;
+            height: 634px;
+            position: absolute;
+        }
+        #returnbtn{
+            width: 100px;
+            height: 79px;
+            position: absolute;
+            z-index: 2;
+            left: 300px;
+            top: 514px;
+        }
+        #returnbtn:hover {
+            cursor: pointer;
+            transform: scale(1.2);
+        }
+        #over{
+            left: 0;
+            top: 150px;
+            width: 450px;
+            height: 329px;
+            position: absolute;
+            z-index: 2;
+        }
+    </style>
+</head>
+<body>
+    <div id="startwrapper">
+        <img src="./img/title.png" alt="" id="title">
+        <div>
+            <img src="./img/startbtn.png" alt="" onclick="gamestart()" id="startgame">
+        </div>
+    </div>
+    <div id="gamewrapper">
+    </div>
+    <div id="btn">
+        <div id="btn4" class="btn">发牌</div>
+        <div id="btn1" onclick="shuffleCards()" class="btn">洗牌</div>
+        <div id="btn2" onclick="gameover()" class="btn">结束游戏</div>
+        <div id="btn3" onclick="gameback()" class="btn">重新开始</div>
+        <div id="score">得分：0</div>
+    </div>
+    <div id="overwrapper">
+        <img src="./img/gb.jpg" alt="" id="bgimg">
+        <img src="./img/over.png" alt="" id="over">
+        <img src="./img/back.png." alt="" id="returnbtn" onclick="gameback()">
+    </div>
+    <script>
+        var body = document.getElementById('body');
+        var startwrapper = document.getElementById('startwrapper');
+        var startbtn = startwrapper.getElementsByTagName('img')[1];
+        var gamewrapper = document.getElementById('gamewrapper');
+        var papers = gamewrapper.getElementsByTagName('div');
+        var btn = document.getElementById('btn');
+        var btn4 = document.getElementById('btn4');
+        var overwrapper = document.getElementById('overwrapper');
+        var arrI = [];
+        var arrJ = [];
+        var score = 0;//分数
+        var temp = 0;//翻牌次数
+        var mark = document.getElementById('score');
+        /*布置主场界面*/
+        for (var i = 0;i<16;i++){
+            var div = document.createElement('div');
+            var img2 = document.createElement('img');
+            var img1 = document.createElement('img');
+            div.id = i;
+            img1.src = './img/background.jpg';
+            img1.className = 'img1';
+            img2.src = "./img/"+Math.ceil((i+1) / 2)+".jpg";
+            img2.className = 'img2';
+            div.appendChild(img1);
+            div.appendChild(img2);
+            gamewrapper.appendChild(div);
+            arrI.push(i);
+        }
+        /*开始按钮*/
+        startbtn.onmouseover = function () {
+            startbtn.style.transform = 'scale(1.15)';
+            startbtn.style.cursor = 'pointer';
+            startbtn.onmouseout = function () {
+                startbtn.style.transform = 'scale(1)'
+            };
+            startbtn.onmousedown = function () {
+                startbtn.style.transform = 'scale(1)';
+                startbtn.style.cursor = 'pointer';
+            };
+        };
+        /*开场转场和洗牌*/
+        function gamestart() {
+            startwrapper.style.display = 'none';
+            gamewrapper.style.display = 'block';
+            btn.style.display = 'block';
+            overwrapper.style.display = 'none';
+            var id = 0;
+            Array.prototype.shuffle = function () {
+                var arrI = this;
+                for (var i = arrI.length-1;i>=0;i--){
+                    var randomIndex = Math.floor(Math.random()*(i+1));
+                    var itemAtIndex = arrI[randomIndex];
+                    arrI[randomIndex] = arrI[i];
+                    arrI[i] = itemAtIndex;
+                }
+                return arrI;
+            };
+            arrI.shuffle();
+            for (var i = 0;i<arrI.length;i++){
+                var j = arrI[i];
+                papers[i].style.left = j%4*100 + 10*(j%4+1) + 'px';
+                papers[i].style.top = Math.floor(j/4)*146 + 10*(Math.floor(j/4)+1) +'px';
+            }
+        }
+        /*翻牌*/
+        for (var i = 0;i<papers.length;i++){
+            papers[i].onclick = (function (a) {
+                return function () {
+                    var id = Number(a);
+                    var imgs = papers[a].getElementsByTagName('img');
+                    if (temp == 0){
+                        imgs[0].style.animation = 'outner11 1s ease forwards';
+                        imgs[1].style.animation = 'inner21 1s ease  forwards';
+                        papers[a].style.pointerEvents = 'none';
+                        arrJ.push(id);
+                        temp++
+                    }
+                    else if (temp == 1){
+                        imgs[0].style.animation = 'outner11 1s ease forwards';
+                        imgs[1].style.animation = 'inner21 1s ease  forwards';
+                        papers[a].style.pointerEvents = 'none';
+                        arrJ.push(id);
+                        temp++;
+                        setTimeout(judge,1000);
+                    }
+                }
+            }(i))
+        }
+        /*配对*/
+        function judge() {
+            temp = 0;
+            if (arrJ.length==2){
+                var paper1 = document.getElementById(arrJ[0]);
+                var imgs1 = paper1.getElementsByTagName('img');
+                var paper2 = document.getElementById(arrJ[1]);
+                var imgs2 = paper2.getElementsByTagName('img');
+                if (Math.floor(arrJ[0]/2)==Math.floor(arrJ[1]/2)&&arrJ[0]!=arrJ[1]) {
+                    imgs1[0].style.animation = 'outner13 1s ease forwards';
+                    imgs1[1].style.animation = 'inner23 1s ease forwards';
+                    imgs2[0].style.animation = 'outner13 1s ease forwards';
+                    imgs2[1].style.animation = 'inner23 1s ease forwards';
+                    arrJ = [];
+                    score += 10;
+                    mark.innerHTML = '得分：'+ score;
+                    setTimeout(function () {
+                        paper1.style.display = 'none';
+                        paper2.style.display = 'none';
+                        if (score==80){
+                            setTimeout(function () {
+                                startwrapper.style.display = 'none';
+                                gamewrapper.style.display = 'none';
+                                btn.style.display = 'none';
+                                overwrapper.style.display = 'block';
+                            },1000);
+                        }
+                    },1000)
+                }
+                else{
+                    imgs1[0].style.animation = 'outner12 1s ease forwards';
+                    imgs1[1].style.animation = 'inner22 1s ease forwards';
+                    imgs2[0].style.animation = 'outner12 1s ease forwards';
+                    imgs2[1].style.animation = 'inner22 1s ease forwards';
+                    arrJ = [];
+                    setTimeout(function () {
+                        paper1.style.pointerEvents = 'auto';
+                        paper2.style.pointerEvents = 'auto';
+                    },1000)
+                }
+            }
+        }
+        /*洗牌*/
+        function shuffleCards() {
+            for (var i = 0;i<arrI.length;i++){
+                papers[i].style.transition = 'all 1s';
+                papers[i].style.left = 10 + 'px';
+                papers[i].style.top = 10 +'px';
+            }
+            gamewrapper.style.pointerEvents = 'none';
+            /*发牌*/
+            btn4.onclick = function () {
+                arrI.shuffle();
+                for (var i = 0;i<arrI.length;i++) {
+                    var j = arrI[i];
+                    papers[i].style.transition = 'all 1s';
+                    papers[i].style.left = j % 4 * 100 + 10 * (j % 4 + 1) + 'px';
+                    papers[i].style.top = Math.floor(j / 4) * 146 + 10 * (Math.floor(j / 4) + 1) + 'px';
+                }
+                btn4.onclick = null;
+                gamewrapper.style.pointerEvents = 'auto';
+            }
+        }
+        /*转场*/
+        function gameover() {
+            startwrapper.style.display = 'none';
+            gamewrapper.style.display = 'none';
+            btn.style.display = 'none';
+            overwrapper.style.display = 'block';
+        }
+        function gameback() {
+            location.reload();
+        }
+    </script>
+</body>
+</html>
